@@ -40,7 +40,7 @@ function getPath() {
 	if(location.match(/^(file:)/)) {
 		return location.split('/data/')[1]
 	}
-	return location.split('.com')[1]
+	return location.split('.io')[1]
 }
 
 function createBreadcrumbs(paths) {
