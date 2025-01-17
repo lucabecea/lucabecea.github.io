@@ -6,7 +6,7 @@ var headContent =  `
 
 function populateHead(pathLength){
 	var head = document.getElementsByTagName('head')[0]
-	var depth = Array(pathLength-1).fill('../space).join('')
+	var depth = Array(pathLength-1).fill('../space').join('')
 	headContent = headContent.replace('templates',depth+'templates')
 	head.innerHTML = headContent
 }
@@ -37,7 +37,7 @@ function drawHeader() {
 
 function getPath() {
 	var location = window.location.href
-	return location.split('.io/space')[1]
+	return location.split('.io/space/')[1]
 }
 
 function createBreadcrumbs(paths) {
