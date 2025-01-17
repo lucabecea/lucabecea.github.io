@@ -1,0 +1,57 @@
+html {
+	display: flex;
+	justify-content: center;
+	scroll-behavior: smooth !important;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	gap: 15px;
+	justify-content: flex-end;
+}
+
+body {
+	display: block !important;
+	word-wrap: break-word;
+	width: min(750px, 100vw);
+	position: relative;
+	padding: 20px;
+}
+
+.menu-wrapper {
+	position: absolute;
+	top: 0px;
+	left: 100%;
+	height: 100%;
+	border-left: 1px solid rgb(128,128,128);
+	padding-left: 20px;
+}
+
+.menu {
+	position: fixed;
+	width: 350px;
+	max-height: 100vh;
+	overflow: scroll;
+}
+
+.body-with-menu {
+	margin-right: 300px;
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color: white;
+		background: black;
+	}
+
+	a {
+		color: #0af;
+	}
+
+	a:visited {
+		color: #99b;
+	}
+}
+

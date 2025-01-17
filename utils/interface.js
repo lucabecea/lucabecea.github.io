@@ -1,6 +1,6 @@
 var headContent =  `
 		<title> mybc </title>
-		<link rel="stylesheet" href="templates/index.css" >
+		<link rel="stylesheet" href="/space/utils/index.css" >
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
  `
 
