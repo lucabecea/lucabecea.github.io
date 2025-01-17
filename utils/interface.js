@@ -1,15 +1,8 @@
-window.onload = drawInterface
 var headContent =  `
 		<title> mybc </title>
 		<link rel="stylesheet" href="templates/index.css" >
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
  `
-
-function drawInterface(){
-	var pathLength = drawHeader()
-	drawFooter()
-	populateHead(pathLength)
-}
 
 function populateHead(pathLength){
 	var head = document.getElementsByTagName('head')[0]
@@ -22,6 +15,12 @@ function drawFooter(){
 	var footer = document.createElement('footer')
 	var body = document.getElementsByTagName('body')[0]
 	body.appendChild(footer)
+}
+
+function calculatePaths(path) {
+	var paths = path.split('/')
+		paths.pop()
+	return ['MYBC', ...paths]
 }
 
 function drawHeader() {
@@ -42,12 +41,6 @@ function getPath() {
 		return location.split('/data/')[1]
 	}
 	return location.split('.com')[1]
-}
-
-function calculatePaths(path) {
-	var paths = path.split('/')
-		paths.pop()
-	return ['MYBC', ...paths]
 }
 
 function createBreadcrumbs(paths) {
@@ -75,5 +68,10 @@ function drawBreadcrumbs(breadcrumbs) {
 	return '<div> ' + links.join('  <b>></b>  ') + '</div>'
 }
 
+function drawInterface(){
+	var pathLength = drawHeader()
+	drawFooter()
+	populateHead(pathLength)
+}
 
-
+window.onload = drawInterface
