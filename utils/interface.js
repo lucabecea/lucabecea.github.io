@@ -1,6 +1,6 @@
 var headContent =  `
 		<title> mybc </title>
-		<link rel="stylesheet" href="/space/utils/index.css" >
+		<link rel="stylesheet" href="/utils/index.css" >
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
  `
 
@@ -36,8 +36,12 @@ function drawHeader() {
 }
 
 function getPath() {
-	var location = window.location.href
-	return location.split('.io/space/')[1]
+	var location = window.location
+	console.warn(window.location)
+	if (location.href.includes('.io/space')) {
+		return location.pathname.slice(7)
+	}
+	return location.pathname
 }
 
 function createBreadcrumbs(paths) {
