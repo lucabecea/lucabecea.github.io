@@ -25,7 +25,7 @@ function calculatePaths(path) {
 
 function drawHeader() {
 	var header = document.createElement('header')
-	var path = getPath()
+	var path = window.location.pathname
 	var paths = calculatePaths(path)
 	var breadcrumbs = createBreadcrumbs(paths)
 	var html = drawBreadcrumbs(breadcrumbs)
@@ -33,15 +33,6 @@ function drawHeader() {
 	var body = document.getElementsByTagName('body')[0]
 	body.insertBefore( header, body.firstChild)
 	return breadcrumbs.length
-}
-
-function getPath() {
-	var location = window.location
-	console.warn(window.location)
-	if (location.href.includes('.io/space')) {
-		return location.pathname.slice(7)
-	}
-	return location.pathname
 }
 
 function createBreadcrumbs(paths) {
