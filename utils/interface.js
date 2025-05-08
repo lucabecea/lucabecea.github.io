@@ -6,7 +6,7 @@ var headContent =  `
 
 function populateHead(pathLength){
 	var head = document.getElementsByTagName('head')[0]
-	var depth = Array(pathLength-1).fill('../space').join('')
+	var depth = Array(pathLength-1).fill('../').join('')
 	headContent = headContent.replace('templates',depth+'templates')
 	head.innerHTML = headContent
 }
@@ -19,7 +19,10 @@ function drawFooter(){
 
 function calculatePaths(path) {
 	var paths = path.split('/')
+	if (paths[paths.length - 1] === 'index.html') {
 		paths.pop()
+	}
+	paths.shift()
 	return ['MYBC', ...paths]
 }
 
@@ -42,6 +45,8 @@ function createBreadcrumbs(paths) {
 		var file = 'index.html'
 		if(paths[index-1].includes('.html')) {
 			file = paths[index-1]
+		} else if (paths[index] && paths[index].includes('.html')) {
+			path = ''
 		}
 		breadcrumbs.unshift({
 			name: paths[index-1],
