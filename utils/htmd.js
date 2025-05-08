@@ -111,6 +111,17 @@ function linkFormatter(line) {
 }
 
 function applyFormatters(line) {
+	if (line.match(linkRegex)) {
+		line = linkFormatter(line)
+	}
+	if (line.match(italicRegex)) {
+		line = italicFormatter(line)
+	}
+	if (line.match(boldRegex)) {
+		line = boldFormatter(line)
+	}
+
+
 	if (line.match(HRRegex)) {
 		return HRFormatter(line)
 	}
@@ -138,10 +149,6 @@ function formatLine(line){
 		endingTag = ''
 		return line
 	}
-
-	line = linkFormatter(line)
-	line = italicFormatter(line)
-	line = boldFormatter(line)
 
 	var newLine = applyFormatters(line)
 	newLineCount = 0;
