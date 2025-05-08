@@ -1,0 +1,3 @@
+[submodule "privnotes/privotes"]
+	path = privnotes/privotes
+	url = https://github.com/lucabecea/privotes
