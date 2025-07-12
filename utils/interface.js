@@ -4,11 +4,8 @@ var headContent =  `
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
  `
 
-function populateHead(pathLength){
-	var head = document.getElementsByTagName('head')[0]
-	var depth = Array(pathLength-1).fill('../').join('')
-	headContent = headContent.replace('templates',depth+'templates')
-	head.innerHTML = headContent
+function populateHead(){
+	document.getElementsByTagName('head')[0].innerHTML = headContent
 }
 
 function drawFooter(){
@@ -66,9 +63,10 @@ function drawBreadcrumbs(breadcrumbs) {
 }
 
 function drawInterface(){
-	var pathLength = drawHeader()
+	drawHeader()
 	drawFooter()
-	populateHead(pathLength)
 }
 
 window.onload = drawInterface
+
+populateHead()

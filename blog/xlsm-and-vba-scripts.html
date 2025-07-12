@@ -1,0 +1,48 @@
+# XLSM and VBA scripts
+
+Adding dropdowns to an excell sheet with the free version of SheetJs.
+
+Among the paid features of SheetJs is the option to add dropdowns and more formulas.
+Unfortunately this is not avaialble on all projects, due to business and financial contraints, so we have to resort to using workarounds. 
+I couldn't find anything about this solution, so hopefully someone will find this short entry useful and won't waste as much time as I did searching for it.
+
+The requierment was to add dropdowns to an excell file without using SheetJs paid options. 
+We also had to coorelated the selected values to some IDs and numbers which could have been coded in the app if we couldn't come up with any solution,
+but if we changes the name of a question, we would have to redo all the selection, despite the IDs not changing. 
+It is ideal to have this part as an excel formula too
+
+VBA scripts do offer the option to create dropdowns programatically 
+(the internet is filled with easy to find [examples](https://basicexceltutorial.com/excel-vba-code-for-drop-down-list/)), 
+and fortunately we can also add formulas to a lot of cells using the same solution without having to use SheetJs ([example]()).
+However, the other problem is that SheetJs can't edit VBA scripts in it's free version, so we are back to the square one: we have a need that is unmet.
+Thankfully, deep in the docs, it is stated that we can [copy it](https://docs.sheetjs.com/docs/csf/features/vba/) from another file.
+The rest is easy peasy, have fun.
+
+[docs](../assets/sheetjs-and-vba.png)
+
+## example (in progress):
+
+Donor file: [sheetjs-and-vba.xlsm](../assets/sheetjs-and-vba.xlsm)
+
+<script lang="javascript" crossorigin="anonymous" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script type="module">
+    document.getElementById('generateExcel').onclick = function () {
+        console.warn('generating')
+        // read the xlsm file
+        var workbook = XLSX.read('../assets/sheetjs-and-vba.xlsm', { bookVBA: true });
+        // extract vba script
+        var encoded_vba_blob = workbook.vbaraw
+        
+        // // create a new worsheet and workbook
+        var worksheet = XLSX.utils.aoa_to_sheet([[]])
+        var newWorkbook = XLSX.utils.book_new(worksheet)
+        // // add the vba script
+        newWorkbook.vbaraw = encoded_vba_blob;
+        // // write the file
+        var file = XLSX.writeFile(newWorkbook, "excel-with-vba-script.xlsm");
+    }
+</script>
+<button id="generateExcel">Generate excel with vba</button>
+
+<script src="/utils/interface.js"></script>
+<script src="/utils/htmd.js"></script>
